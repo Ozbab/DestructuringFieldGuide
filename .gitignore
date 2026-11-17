@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+latex/*.aux
+latex/*.log
+latex/*.out
+latex/*.toc
+latex/*.xdv
+latex/*.fls
+latex/*.fdb_latexmk
+latex/README.for-latex.md
