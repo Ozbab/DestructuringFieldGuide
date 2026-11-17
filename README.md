@@ -661,10 +661,10 @@ function PanelDefaultClass({ children, ...rest }) {
 P4 rest: <section id="today" class="panel" data-day="pzt"><h2>Bugün</h2>3 randevu</section>
 P4 spread then explicit: <section class="panel">x</section>
 P4 explicit then spread: <section class="red">x</section>
-  [react warning] React does not recognize the `isVip` prop on a DOM element. ...
+  [react warning] React does not recognize the `isVip` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isvip` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
 P4 unknown prop in rest: <section><h2>x</h2>y</section>
 P4 rest without title: <pre>{&quot;id&quot;:&quot;b&quot;,&quot;children&quot;:&quot;c&quot;}</pre>
-  [react warning] KeyCheck: `key` is not a prop. Trying to access it will result in `undefined` being returned. ...
+  [react warning] KeyCheck: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)
 P4 key as prop: <i>undefined</i>
 ```
 
@@ -898,7 +898,9 @@ My guess was that `const [p1, p2] = value` reads `value[0]` and `value[1]`. I ma
   D1 return() called: the pattern stopped early
 D1 two names: Emre Burak
   D1 next() call 1
-  ...
+  D1 next() call 2
+  D1 next() call 3
+  D1 next() call 4
   D1 next() call 5
 D1 rest reads to the end: [ 'Selin', 'Mert' ]
 D1 array-like: {(intermediate value)(intermediate value)} is not iterable

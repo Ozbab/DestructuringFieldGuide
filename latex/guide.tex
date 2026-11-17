@@ -1,0 +1,117 @@
+% Oğuzhan Kaya, 2200004591
+% SEN0415 Assignment 4, Bonus 1: the field guide in LaTeX.
+% body.tex is generated from README.md by build.sh; this file is the layout around it.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{DejaVuSerif}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic,Scale=0.92]
+\setsansfont{DejaVuSans}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Scale=0.92]
+\setmonofont{DejaVuSansMono}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Scale=0.8]
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,
+  pdftitle={Destructuring Field Guide},pdfauthor={Oğuzhan Kaya}}
+
+\definecolor{accent}{HTML}{1A58A5}
+\definecolor{codebg}{HTML}{F4F7FB}
+\definecolor{coderule}{HTML}{D3DCE8}
+\definecolor{kw}{HTML}{6A3FB0}
+\definecolor{str}{HTML}{0B6B50}
+\definecolor{com}{HTML}{546880}
+
+% things pandoc expects from its own template
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\passthrough}[1]{#1}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+
+% one language definition for JS, JSX, TS and TSX
+\usepackage{listings}
+\lstdefinelanguage{TSX}{
+  morekeywords={const,let,var,function,return,if,else,for,of,in,new,try,catch,throw,
+    type,import,export,from,as,async,await,typeof,keyof,infer,extends,readonly,
+    true,false,null,undefined,void,yield,static,declare},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[b]`,
+}
+\lstset{
+  language=TSX,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{kw}\bfseries,
+  stringstyle=\color{str},
+  commentstyle=\color{com}\itshape,
+  backgroundcolor=\color{codebg},
+  frame=single, rulecolor=\color{coderule}, framesep=4pt,
+  xleftmargin=4pt, xrightmargin=4pt,
+  breaklines=true, breakatwhitespace=false,
+  postbreak=\mbox{\textcolor{com}{$\hookrightarrow$}\space},
+  columns=fullflexible, keepspaces=true,
+  showstringspaces=false, upquote=true,
+  aboveskip=0.6em, belowskip=0.6em,
+  extendedchars=true,
+  % listings moves non-ASCII letters around; these lines keep Turkish words in order
+  literate={ç}{{ç}}1 {Ç}{{Ç}}1 {ğ}{{ğ}}1 {Ğ}{{Ğ}}1 {ı}{{ı}}1 {İ}{{İ}}1
+           {ö}{{ö}}1 {Ö}{{Ö}}1 {ş}{{ş}}1 {Ş}{{Ş}}1 {ü}{{ü}}1 {Ü}{{Ü}}1
+           {→}{{$\rightarrow$}}1 {–}{{--}}1,
+}
+% inline code: no frame, no background, can break
+\makeatletter
+\lst@AddToHook{TextStyle}{\lstset{backgroundcolor={},frame=none}}
+\makeatother
+
+\titleformat{\section}{\Large\sffamily\bfseries\color{accent}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\sffamily\bfseries}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\sffamily\bfseries}{\thesubsubsection}{0.6em}{}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\sffamily Destructuring Field Guide}
+\rhead{\small\sffamily Oğuzhan Kaya, 2200004591}
+\cfoot{\small\thepage}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \centering
+  \vspace*{5cm}
+  {\sffamily\small SEN0415 Advanced Web Programming, Fall 2026\par}
+  \vspace{1em}
+  {\sffamily\Huge\bfseries\color{accent} Destructuring Field Guide\par}
+  \vspace{0.8em}
+  {\large JavaScript, TypeScript, and React props and children\par}
+  \vspace{3em}
+  {\large Oğuzhan Kaya\par}
+  {Student number 2200004591\par}
+  {İstanbul Kültür University\par}
+  \vfill
+  {\small Built from \texttt{README.md} with pandoc and LaTeX (see \texttt{latex/build.sh}).\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\input{body.tex}
+
+\end{document}
