@@ -163,7 +163,7 @@ The line starts with \passthrough{\lstinline![!}, so without semicolons it can g
 \textbf{Example} (from \passthrough{\lstinline!js/arrays.mjs!}):
 
 \begin{lstlisting}
-const [firstSong = 'silence', secondSong = 'silence'] = ['Barış Manço - Gülpembe']
+const [firstSong = 'silence', secondSong = 'silence'] = ['Bar@U0131@@U015F@ Man@U00E7@o - G@U00FC@lpembe']
 console.log('form 4:', firstSong, '|', secondSong)
 const [d1 = 'default', d2 = 'default', d3 = 'default'] = [undefined, null, '']
 console.log('form 4 (undefined/null/empty):', d1, d2, JSON.stringify(d3))
@@ -174,7 +174,7 @@ console.log('form 4 (empty array):', open, close)
 \textbf{Output:}
 
 \begin{lstlisting}
-form 4: Barış Manço - Gülpembe | silence
+form 4: Bar@U0131@@U015F@ Man@U00E7@o - G@U00FC@lpembe | silence
 form 4 (undefined/null/empty): default null ""
 form 4 (empty array): 9 21
 \end{lstlisting}
@@ -193,7 +193,7 @@ form 4 (empty array): 9 21
 
 \begin{lstlisting}
 const appointment = {
-  id: 'apt-0412', customer: 'Mert', service: 'Saç + Sakal', price: 450,
+  id: 'apt-0412', customer: 'Mert', service: 'Sa@U00E7@ + Sakal', price: 450,
   barber: { name: 'Hakan', chair: 2 }, extras: ['wash', 'wax'],
 }
 let { customer, price } = appointment
@@ -231,7 +231,7 @@ console.log('form 6 (old name):', typeof service)
 \textbf{Output:}
 
 \begin{lstlisting}
-form 6: Saç + Sakal apt-0412
+form 6: Sa@U00E7@ + Sakal apt-0412
 form 6 (old name): undefined
 \end{lstlisting}
 
@@ -249,7 +249,7 @@ reason \passthrough{\lstinline!\{ customer: string \}!} inside a pattern is a re
 \textbf{Example} (from \passthrough{\lstinline!js/objects.mjs!}):
 
 \begin{lstlisting}
-const walkIn = { customer: 'Selin', service: 'Saç kesimi' }
+const walkIn = { customer: 'Selin', service: 'Sa@U00E7@ kesimi' }
 const { barber = 'first free barber', paid = false, price: fee = 300 } = walkIn
 console.log('form 7:', barber, paid, fee)
 const { note = 'no note' } = { note: null }
@@ -345,11 +345,11 @@ Two or more levels get hard to read quickly (Bonus 2, D4).
 \textbf{Example} (from \passthrough{\lstinline!js/objects.mjs!}):
 
 \begin{lstlisting}
-const prices = { 'Saç kesimi': 300, 'Sakal': 150, 'Saç + Sakal': 450 }
+const prices = { 'Sa@U00E7@ kesimi': 300, 'Sakal': 150, 'Sa@U00E7@ + Sakal': 450 }
 const wanted = 'Sakal'
 const { [wanted]: beardPrice } = prices
 console.log('form 10:', beardPrice)
-for (const s of ['Saç kesimi', 'Boya']) {
+for (const s of ['Sa@U00E7@ kesimi', 'Boya']) {
   const { [s]: p = 'not offered' } = prices
   console.log('form 10 (loop):', s, '->', p)
 }
@@ -359,12 +359,12 @@ for (const s of ['Saç kesimi', 'Boya']) {
 
 \begin{lstlisting}
 form 10: 150
-form 10 (loop): Saç kesimi -> 300
+form 10 (loop): Sa@U00E7@ kesimi -> 300
 form 10 (loop): Boya -> not offered
 \end{lstlisting}
 
 \textbf{Use it when:} the key is only known at run time (user input, a loop), and especially when the key
-is not a valid variable name (\passthrough{\lstinline!'Saç + Sakal'!} has spaces and a \passthrough{\lstinline!+!}).
+is not a valid variable name (\passthrough{\lstinline!'Sa@U00E7@ + Sakal'!} has spaces and a \passthrough{\lstinline!+!}).
 
 \textbf{Watch out:} the rename is not optional here: \passthrough{\lstinline!const \{ [wanted] \} = prices!} is a SyntaxError, because
 JavaScript cannot know the variable name in advance. Plain version: \passthrough{\lstinline!const beardPrice = prices[wanted]!},
@@ -372,12 +372,12 @@ which is honestly shorter; I would use form 10 mainly when it is combined with a
 
 \subsection{\texorpdfstring{Form 11: patterns in parameters, with defaults, \texttt{function\ f(\{\ a\ =\ 1,\ b\ \}:\ Options\ =\ \{\})}}{Form 11: patterns in parameters, with defaults, function f(\{ a = 1, b \}: Options = \{\})}}\label{form-11-patterns-in-parameters-with-defaults-function-f-a-1-b-options}
 
-\textbf{Syntax:} \passthrough{\lstinline!function book(\{ customer, service = 'Saç kesimi', minutes = 30, barber = 'any' \} = \{\})!}
+\textbf{Syntax:} \passthrough{\lstinline!function book(\{ customer, service = 'Sa@U00E7@ kesimi', minutes = 30, barber = 'any' \} = \{\})!}
 
 \textbf{Example} (from \passthrough{\lstinline!js/params.mjs!}):
 
 \begin{lstlisting}
-function book({ customer, service = 'Saç kesimi', minutes = 30, barber = 'any' } = {}) {
+function book({ customer, service = 'Sa@U00E7@ kesimi', minutes = 30, barber = 'any' } = {}) {
   return `${customer ?? 'nobody'} | ${service} | ${minutes} min | ${barber}`
 }
 console.log('form 11 (mine):', book({ customer: 'Deniz', minutes: 45 }))
@@ -390,8 +390,8 @@ try { bookStrict() } catch (e) { console.log('form 11 (no = {}):', e.message) }
 \textbf{Output:}
 
 \begin{lstlisting}
-form 11 (mine): Deniz | Saç kesimi | 45 min | any
-form 11 (no argument): nobody | Saç kesimi | 30 min | any
+form 11 (mine): Deniz | Sa@U00E7@ kesimi | 45 min | any
+form 11 (no argument): nobody | Sa@U00E7@ kesimi | 30 min | any
 form 11 (null field): Ece | null | 30 min | any
 form 11 (no = {}): Cannot destructure property 'customer' of 'undefined' as it is undefined.
 \end{lstlisting}
@@ -429,9 +429,9 @@ for (const { time, customer: { name } } of today) {
 \textbf{Output:}
 
 \begin{lstlisting}
-form 12 (object): Saç kesimi   300
+form 12 (object): Sa@U00E7@ kesimi   300
 form 12 (object): Sakal        150
-form 12 (object): Saç + Sakal  450
+form 12 (object): Sa@U00E7@ + Sakal  450
 form 12 (Map): 1 Hakan
 form 12 (Map): 2 Murat
 form 12 (Map): 3 (empty chair)
@@ -504,19 +504,19 @@ The parentheses force JavaScript to read it as an expression. (A \passthrough{\l
 \textbf{Pitfall 4: it copies references, not deep copies.}
 
 \begin{lstlisting}
-const shop = { name: 'Kaya Berber', address: { district: 'Bakırköy' }, services: ['cut'] }
+const shop = { name: 'Kaya Berber', address: { district: 'Bak@U0131@rk@U00F6@y' }, services: ['cut'] }
 const { address, services, name } = shop
-address.district = 'Ataköy'
+address.district = 'Atak@U00F6@y'
 services.push('beard')
 let shopName = name
 shopName = 'Other'
 const { name: _n, ...copy } = shop
-copy.address.district = 'Yeşilköy'
+copy.address.district = 'Ye@U015F@ilk@U00F6@y'
 \end{lstlisting}
 
 \begin{lstlisting}
-pitfall 4: Ataköy [ 'cut', 'beard' ] Kaya Berber
-pitfall 4 (rest is shallow): Yeşilköy
+pitfall 4: Atak@U00F6@y [ 'cut', 'beard' ] Kaya Berber
+pitfall 4 (rest is shallow): Ye@U015F@ilk@U00F6@y
 \end{lstlisting}
 
 \emph{Why:} destructuring is only \passthrough{\lstinline!const address = shop.address!}, which copies the reference to the same object, not the object.
@@ -615,7 +615,7 @@ overwrites the attribute). With no content the variable is \passthrough{\lstinli
 \subsection{P3: what children can be}\label{p3-what-children-can-be}
 
 \begin{lstlisting}
-P3 string: <div>[Saç kesimi]</div>
+P3 string: <div>[Sa@U00E7@ kesimi]</div>
 P3 number: <div>[450]</div>
 P3 zero: <div>[0]</div>
 P3 one element: <div>[<b>Hakan</b>]</div>
@@ -677,7 +677,7 @@ function PanelDefaultClass({ children, ...rest }) {
 \end{lstlisting}
 
 \begin{lstlisting}
-P4 rest: <section id="today" class="panel" data-day="pzt"><h2>Bugün</h2>3 randevu</section>
+P4 rest: <section id="today" class="panel" data-day="pzt"><h2>Bug@U00FC@n</h2>3 randevu</section>
 P4 spread then explicit: <section class="panel">x</section>
 P4 explicit then spread: <section class="red">x</section>
   [react warning] React does not recognize the `isVip` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isvip` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
@@ -713,8 +713,8 @@ function ReceiptChildren({ children }) {
 \end{lstlisting}
 
 \begin{lstlisting}
-P5 slots: <article><header><h3>Kaya Berber</h3></header><main>Saç + Sakal</main><footer><small>Toplam: 450 TL</small></footer></article>
-P5 children: <article><header><h3>Kaya Berber</h3></header><main>Saç + Sakal</main><footer><small>Toplam: 450 TL</small></footer></article>
+P5 slots: <article><header><h3>Kaya Berber</h3></header><main>Sa@U00E7@ + Sakal</main><footer><small>Toplam: 450 TL</small></footer></article>
+P5 children: <article><header><h3>Kaya Berber</h3></header><main>Sa@U00E7@ + Sakal</main><footer><small>Toplam: 450 TL</small></footer></article>
 P5 children, wrong order: <article><footer>Toplam</footer><header>Kaya Berber</header></article>
 \end{lstlisting}
 
@@ -759,9 +759,9 @@ function BookButton({ slot, children = 'Randevu al', type = 'button', ...rest }:
 \end{lstlisting}
 
 \begin{lstlisting}
-P7 a: <p class="info">Pazartesi kapalıyız</p>
+P7 a: <p class="info">Pazartesi kapal@U0131@y@U0131@z</p>
 P7 b: <p class="warn"></p>
-P7 c: <button type="button" disabled="" data-slot="10:30">10:30 için al</button>
+P7 c: <button type="button" disabled="" data-slot="10:30">10:30 i@U00E7@in al</button>
 P7 c default children: <button type="button" aria-label="book 11:00" data-slot="11:00">Randevu al</button>
 \end{lstlisting}
 
@@ -819,7 +819,8 @@ But \passthrough{\lstinline!(\{ title \})!} then \passthrough{\lstinline!title =
 
 \section{JavaScript vs TypeScript}\label{javascript-vs-typescript}
 
-The errors are real, from \passthrough{\lstinline!npm run errors!} (\passthrough{\lstinline!errors/wrong.ts!}) unless marked otherwise.
+The errors come from \passthrough{\lstinline!npm run errors!} (\passthrough{\lstinline!errors/wrong.ts!}) unless marked otherwise.
+Some messages are shortened in the table. The full diagnostics are in \passthrough{\lstinline!errors/output.txt!}.
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -862,8 +863,8 @@ From \passthrough{\lstinline!ts/types.ts!}:
 
 \begin{lstlisting}
 T1: 1
-T1 wrong but runs: Hoş geldin Mert
-T1 right: Hoş geldin Mert
+T1 wrong but runs: Ho@U015F@ geldin Mert
+T1 right: Ho@U015F@ geldin Mert
 T2 tuple: 11 EMRE
 T2 array: number string
 T2 as const: 09:00 21:00 | without: 09:00
@@ -935,10 +936,10 @@ The included PDF can be read directly. Tectonic downloads the TeX resources it n
 DejaVu fonts and their license are included in \passthrough{\lstinline!latex/fonts!}, so the layout does not depend on
 fonts installed on the reader's computer.
 
-Two conversion details matter: a barber-pole emoji is spelled out because it has no glyph in the
-code font, and escaped table pipes are restored after pandoc conversion. The script uses a temporary
-file instead of \passthrough{\lstinline!sed -i!}, whose syntax differs between macOS and Linux. Turkish letters are mapped
-explicitly in the listing style. The title page disables page anchors to avoid duplicate page labels.
+The build spells out a barber-pole emoji because it has no glyph in the code font.
+After pandoc conversion, a Node.js script restores escaped table pipes and marks Turkish letters
+inside code for the listing style. This preserves their order in the rendered PDF.
+The title page disables page anchors to avoid duplicate page labels.
 
 \section{Bonus 2: Depth}\label{bonus-2-depth}
 
@@ -972,7 +973,7 @@ An array-like object \passthrough{\lstinline!\{ 0: 'a', length: 1 \}!} does not 
 Because of this, anything iterable can be destructured:
 
 \begin{lstlisting}
-D1 string: Ç [ 'a', 'ğ', 'r', 'ı' ]
+D1 string: @U00C7@ [ 'a', '@U011F@', 'r', '@U0131@' ]
 D1 emoji is one item (code point, not UTF-16 unit): <barber-pole emoji> | [0] gives: "\ud83d"
 D1 Set (duplicates gone): cut beard
 D1 Map, nested pattern: Hakan 2
@@ -1014,7 +1015,7 @@ Getters are called in the order of the PATTERN, not of the object: I wrote \pass
 \begin{lstlisting}
 D3 catch pattern: SyntaxError | Expected property name or '}' in JSON at position 2 (line 1 column 3)
 D3 member targets: { left: 'Hakan', right: 'Murat' } [ <3 empty items>, 'Ali' ]
-D3 object pattern into members: Usta Çırak
+D3 object pattern into members: Usta @U00C7@@U0131@rak
 D3 for...in key: cut string
 D3 for...in key: beard string
 D3 for...of pair: cut 300
@@ -1248,14 +1249,14 @@ The caller's \passthrough{\lstinline!key!} belongs to React and is not an ordina
 
 Bonus 4: Git repository
 
-Link: https://github.com/Ozbab/DestructuringFieldGuide
+Link: \href{https://github.com/Ozbab/DestructuringFieldGuide}{github.com/Ozbab/DestructuringFieldGuide}
 
 \passthrough{\lstinline!.gitignore!} leaves out \passthrough{\lstinline!node\_modules!}, \passthrough{\lstinline!dist!} and temporary LaTeX files. After cloning, run
 \passthrough{\lstinline!npm install!}, \passthrough{\lstinline!npm run all!} and \passthrough{\lstinline!npm run check!}. The repository is public for instructor access.
 
 History note: this repository was created on 17 November 2026 for the existing project.
-Its commits record the import, documentation, build improvements and verification on that date.
-They do not demonstrate work spread over several days; that part of the bonus is not claimed as completed.
+Its history records the import, documentation, build improvements and final corrections.
+The several-day development history required for full credit is incomplete.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -1287,7 +1288,7 @@ These entries describe the actual results and the corresponding fixes.
   \textbf{A type-looking pattern creates a variable.} In \passthrough{\lstinline!errors/wrong.ts!},
   \passthrough{\lstinline!function greet(\{ customer: string \})!} produces
   \passthrough{\lstinline!TS7031: Binding element 'string' implicitly has an 'any' type.!}
-  The typed version in \passthrough{\lstinline!ts/types.ts!} prints \passthrough{\lstinline!T1 wrong but runs: Hoş geldin Mert!}.
+  The typed version in \passthrough{\lstinline!ts/types.ts!} prints \passthrough{\lstinline!T1 wrong but runs: Ho@U015F@ geldin Mert!}.
   The colon renames \passthrough{\lstinline!customer!} to \passthrough{\lstinline!string!}; the type belongs after the complete pattern.
 \item
   \textbf{A missing nested object fails before a leaf default helps.} Form 9 prints

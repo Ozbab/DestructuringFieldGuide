@@ -63,11 +63,11 @@
   columns=fullflexible, keepspaces=true,
   showstringspaces=false, upquote=true,
   aboveskip=0.6em, belowskip=0.6em,
-  extendedchars=true,
-  % listings moves non-ASCII letters around; these lines keep Turkish words in order
-  literate={ç}{{ç}}1 {Ç}{{Ç}}1 {ğ}{{ğ}}1 {Ğ}{{Ğ}}1 {ı}{{ı}}1 {İ}{{İ}}1
-           {ö}{{ö}}1 {Ö}{{Ö}}1 {ş}{{ş}}1 {Ş}{{Ş}}1 {ü}{{ü}}1 {Ü}{{Ü}}1
-           {→}{{$\rightarrow$}}1 {–}{{--}}1,
+  extendedchars=false,
+  % prepare-listings.mjs inserts these markers before typesetting.
+  literate={@U00E7@}{{\char"00E7\relax}}1 {@U00C7@}{{\char"00C7\relax}}1 {@U011F@}{{\char"011F\relax}}1 {@U011E@}{{\char"011E\relax}}1 {@U0131@}{{\char"0131\relax}}1 {@U0130@}{{\char"0130\relax}}1
+           {@U00F6@}{{\char"00F6\relax}}1 {@U00D6@}{{\char"00D6\relax}}1 {@U015F@}{{\char"015F\relax}}1 {@U015E@}{{\char"015E\relax}}1 {@U00FC@}{{\char"00FC\relax}}1 {@U00DC@}{{\char"00DC\relax}}1
+           {@U2192@}{{\char"2192\relax}}1 {@U2013@}{{\char"2013\relax}}1,
 }
 % inline code: no frame, no background, can break
 \makeatletter

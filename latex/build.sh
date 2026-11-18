@@ -4,6 +4,8 @@
 set -eu
 project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$project_dir"
+command -v pandoc >/dev/null 2>&1 || { echo 'pandoc was not found.' >&2; exit 1; }
+command -v node >/dev/null 2>&1 || { echo 'node was not found.' >&2; exit 1; }
 engine=${1:-auto}
 if [ "$engine" = auto ]; then
   if command -v tectonic >/dev/null 2>&1; then engine=tectonic; else engine=xelatex; fi
@@ -21,7 +23,7 @@ pandoc latex/README.for-latex.md -o latex/body.tex \
   --listings --wrap=preserve --shift-heading-level-by=-1
 {
   printf '%s\n' '% Oğuzhan Kaya, 2200004591' '% Generated from README.md by latex/build.sh.'
-  sed 's/PIPECHAR/|/g' latex/body.tex
+  node latex/prepare-listings.mjs latex/body.tex
 } > latex/body.fixed.tex
 mv latex/body.fixed.tex latex/body.tex
 cd latex

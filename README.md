@@ -780,7 +780,8 @@ But `({ title })` then `title = title.toUpperCase()` is fine: after destructurin
 
 ## JavaScript vs TypeScript
 
-The errors are real, from `npm run errors` (`errors/wrong.ts`) unless marked otherwise.
+The errors come from `npm run errors` (`errors/wrong.ts`) unless marked otherwise.
+Some messages are shortened in the table. The full diagnostics are in `errors/output.txt`.
 
 | Form | Same in TS | What I must add | Error when I get it wrong |
 |---|---|---|---|
@@ -876,10 +877,10 @@ The included PDF can be read directly. Tectonic downloads the TeX resources it n
 DejaVu fonts and their license are included in `latex/fonts`, so the layout does not depend on
 fonts installed on the reader's computer.
 
-Two conversion details matter: a barber-pole emoji is spelled out because it has no glyph in the
-code font, and escaped table pipes are restored after pandoc conversion. The script uses a temporary
-file instead of `sed -i`, whose syntax differs between macOS and Linux. Turkish letters are mapped
-explicitly in the listing style. The title page disables page anchors to avoid duplicate page labels.
+The build spells out a barber-pole emoji because it has no glyph in the code font.
+After pandoc conversion, a Node.js script restores escaped table pipes and marks Turkish letters
+inside code for the listing style. This preserves their order in the rendered PDF.
+The title page disables page anchors to avoid duplicate page labels.
 
 ## Bonus 2: Depth
 
@@ -1182,14 +1183,14 @@ The caller's `key` belongs to React and is not an ordinary prop passed to `TaskR
 
 Bonus 4: Git repository
 
-Link: https://github.com/Ozbab/DestructuringFieldGuide
+Link: [github.com/Ozbab/DestructuringFieldGuide](https://github.com/Ozbab/DestructuringFieldGuide)
 
 `.gitignore` leaves out `node_modules`, `dist` and temporary LaTeX files. After cloning, run
 `npm install`, `npm run all` and `npm run check`. The repository is public for instructor access.
 
 History note: this repository was created on 17 November 2026 for the existing project.
-Its commits record the import, documentation, build improvements and verification on that date.
-They do not demonstrate work spread over several days; that part of the bonus is not claimed as completed.
+Its history records the import, documentation, build improvements and final corrections.
+The several-day development history required for full credit is incomplete.
 
 ---
 
